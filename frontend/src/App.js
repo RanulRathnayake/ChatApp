@@ -7,9 +7,12 @@ import Home from './Components/Home.js'
 import Chat from './Components/Chat.js'
 import SignedOut from './Components/SignedOut.js'
 
+import UserContext from './context/UserContext.js';
+
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 function App() {
+  
   const handleSignOut = () => {
     signOut(auth);
     cookies.remove('authToken');

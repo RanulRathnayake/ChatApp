@@ -1,4 +1,5 @@
 import {React, useState, useEffect} from 'react'
+import '../Styles/Chat.css'
 import {addDoc, collection, serverTimestamp, onSnapshot, query, where, orderBy} from 'firebase/firestore'
 import {auth, db} from '../config/firebase-config'
 
@@ -47,26 +48,25 @@ const Chat = (props) => {
             <div className='header'>
                 <h1>Welcome to : {room}</h1>
             </div>
-            <div className='messages'>
+            <div className='conversation-container'>
                 {messages.map((message) => (
-                    <div key={message.id} className="message">
+                    <div key={message.id} className="messages-container">
                         <span className="message-username">{message.username} </span>
-                        {message.text}
+                        <span className="message-text">: {message.text} </span>
+                        
                     </div>
                 ))}
             </div>
             <form 
-            className="new-message-form"
+            className="input-area"
             onSubmit={handleSubmit}>
                 <input
-                    className="new-message-input"
                     type="text"
                     placeholder="Type your message here..."
                     onChange={(e) => setNewMessages(e.target.value)}
                     value={newMessages}
                 />
                 <button
-                    className="send-button"
                     type="submit">
                     Send
                 </button>
